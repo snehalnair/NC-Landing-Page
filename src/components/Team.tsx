@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "./ui/avatar";
 
 export default function Team() {

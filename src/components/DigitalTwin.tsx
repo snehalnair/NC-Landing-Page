@@ -1,3 +1,5 @@
+"use client";
+
 import { MessageSquare, Brain, Heart } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 
