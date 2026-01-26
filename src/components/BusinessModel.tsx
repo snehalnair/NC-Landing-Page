@@ -1,3 +1,4 @@
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { Users, Heart, Building2 } from "lucide-react";
 
 export default function BusinessModel() {
