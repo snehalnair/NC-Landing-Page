@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -30,17 +30,21 @@
 
 @layer base {
   * {
-    border-color: var(--border);
+    @apply border-border;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+  }
+  
+  p {
+    line-height: 1.7;
   }
 }
 
@@ -51,11 +55,17 @@ html {
 
 /* Custom utility classes */
 .font-serif {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .font-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Enhanced button styles */
+button {
   font-family: 'Inter', sans-serif;
+  cursor: pointer;
 }
 
 /* Animation utilities */
@@ -68,8 +78,23 @@ html {
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* Gradient text */
@@ -82,14 +107,14 @@ html {
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -98,7 +123,8 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: var(--nc-slate);
-  border-radius: 4px;
+  border-radius: 5px;
+  border: 2px solid var(--nc-ivory);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -109,4 +135,31 @@ html {
 ::selection {
   background: var(--nc-blush);
   color: white;
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--nc-slate);
+  outline-offset: 2px;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Container max width */
+.container {
+  max-width: 1280px;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
 }

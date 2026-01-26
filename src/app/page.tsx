@@ -30,77 +30,100 @@ import {
 // ============================================
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/30">
       {/* Background Neural Network Visual */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#8CA3B0] rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#8CA3B0]/30 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
         <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#E7A59C] rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E7A59C]/30 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"
           style={{ animationDelay: "2s" }}
         ></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#DCE7F3]/40 rounded-full filter blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20 text-center">
         {/* Logo & Tagline */}
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
+          <div className="inline-flex items-center gap-3 mb-3">
             <Sparkles className="w-8 h-8 text-[#8CA3B0]" />
-            <span className="tracking-widest text-[#8CA3B0] uppercase font-medium">
+            <span className="tracking-[0.3em] text-[#8CA3B0] uppercase font-medium text-sm">
               NeuralConnexions
             </span>
           </div>
-          <p className="text-[#8CA3B0] italic font-serif">Find • Nurture • Sustain</p>
+          <p className="text-[#8CA3B0] italic font-serif text-lg">Find • Nurture • Sustain</p>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-5xl md:text-7xl mb-6 text-[#2C3E50] max-w-4xl mx-auto font-serif">
+        <h1 className="text-5xl md:text-7xl mb-6 text-[#2C3E50] max-w-4xl mx-auto font-serif leading-tight">
           The World&apos;s First Cognitive Companion
         </h1>
 
         {/* Subheadline */}
-        <p className="text-xl md:text-2xl text-[#717182] mb-12 max-w-3xl mx-auto">
+        <p className="text-xl md:text-2xl text-[#717182] mb-12 max-w-3xl mx-auto leading-relaxed">
           AI that understands human connection — guiding you from first contact
           to lifelong growth.
         </p>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="bg-[#8CA3B0] hover:bg-[#7a93a0] text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2 font-medium">
+          <button className="bg-[#8CA3B0] hover:bg-[#7a93a0] text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 font-medium text-lg hover:-translate-y-0.5">
             Explore the AI Companion
             <ArrowRight className="w-5 h-5" />
           </button>
-          <button className="border-2 border-[#8CA3B0] text-[#8CA3B0] hover:bg-[#8CA3B0] hover:text-white px-8 py-4 rounded-lg transition-all font-medium">
+          <button className="bg-white/80 backdrop-blur-sm border-2 border-[#8CA3B0] text-[#8CA3B0] hover:bg-[#8CA3B0] hover:text-white px-8 py-4 rounded-xl transition-all duration-300 font-medium text-lg hover:-translate-y-0.5 shadow-md hover:shadow-lg">
             Join the Beta
           </button>
         </div>
 
         {/* Visual Concept - Abstract Neural Faces */}
-        <div className="mt-20 relative">
+        <div className="mt-20 relative h-64">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-64 h-64 relative">
+            <div className="w-80 h-80 relative">
               {/* Connection lines */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+                {/* Outer ring */}
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#8CA3B0" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
+                
+                {/* Connection paths */}
                 <path
-                  d="M 50 100 Q 100 80 150 100"
+                  d="M 50 100 Q 100 60 150 100"
                   stroke="#8CA3B0"
                   strokeWidth="2"
                   fill="none"
-                  opacity="0.3"
+                  opacity="0.4"
                   className="animate-pulse"
                 />
                 <path
-                  d="M 50 100 Q 100 120 150 100"
+                  d="M 50 100 Q 100 140 150 100"
                   stroke="#E7A59C"
                   strokeWidth="2"
                   fill="none"
-                  opacity="0.3"
+                  opacity="0.4"
                   className="animate-pulse"
                   style={{ animationDelay: "1s" }}
                 />
-                <circle cx="50" cy="100" r="4" fill="#8CA3B0" opacity="0.6" />
-                <circle cx="150" cy="100" r="4" fill="#E7A59C" opacity="0.6" />
-                <circle cx="100" cy="80" r="3" fill="#8CA3B0" opacity="0.4" />
-                <circle cx="100" cy="120" r="3" fill="#E7A59C" opacity="0.4" />
+                <path
+                  d="M 50 100 L 150 100"
+                  stroke="#8CA3B0"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                  className="animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                
+                {/* Nodes */}
+                <circle cx="50" cy="100" r="8" fill="#8CA3B0" opacity="0.7" />
+                <circle cx="150" cy="100" r="8" fill="#E7A59C" opacity="0.7" />
+                <circle cx="100" cy="60" r="5" fill="#8CA3B0" opacity="0.5" />
+                <circle cx="100" cy="140" r="5" fill="#E7A59C" opacity="0.5" />
+                <circle cx="100" cy="100" r="6" fill="#8CA3B0" opacity="0.6" className="animate-pulse" />
+                
+                {/* Small decorative nodes */}
+                <circle cx="75" cy="80" r="3" fill="#8CA3B0" opacity="0.3" />
+                <circle cx="125" cy="80" r="3" fill="#E7A59C" opacity="0.3" />
+                <circle cx="75" cy="120" r="3" fill="#E7A59C" opacity="0.3" />
+                <circle cx="125" cy="120" r="3" fill="#8CA3B0" opacity="0.3" />
               </svg>
             </div>
           </div>
@@ -109,8 +132,8 @@ function Hero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-[#8CA3B0] rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-[#8CA3B0] rounded-full"></div>
+        <div className="w-7 h-12 border-2 border-[#8CA3B0]/60 rounded-full flex justify-center pt-3 bg-white/30 backdrop-blur-sm">
+          <div className="w-1.5 h-3 bg-[#8CA3B0] rounded-full"></div>
         </div>
       </div>
     </section>
@@ -122,12 +145,12 @@ function Hero() {
 // ============================================
 function Problem() {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#DCE7F3]/30 to-[#F5F6F7]">
+    <section className="py-28 bg-gradient-to-br from-[#DCE7F3]/50 via-white to-[#F5F6F7]">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <div>
-            <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
+            <h2 className="text-4xl md:text-5xl mb-8 text-[#2C3E50] font-serif leading-tight">
               Connected — yet misunderstood.
             </h2>
             <p className="text-lg text-[#717182] leading-relaxed mb-6">
@@ -137,7 +160,7 @@ function Problem() {
             </p>
             <p className="text-lg text-[#717182] leading-relaxed">
               NeuralConnexions bridges this gap through an{" "}
-              <span className="text-[#8CA3B0] font-medium">
+              <span className="text-[#8CA3B0] font-semibold">
                 AI Relationship Concierge
               </span>{" "}
               that continuously learns and adapts to how people connect and
@@ -147,34 +170,34 @@ function Problem() {
 
           {/* Visual */}
           <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
               {/* Text Chaos */}
-              <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-red-200">
-                <p className="text-xs text-[#717182] mb-2 opacity-60">Before</p>
-                <div className="space-y-2">
-                  <div className="bg-red-50 p-2 rounded text-xs text-red-600">
+              <div className="bg-white p-6 rounded-2xl shadow-xl border border-red-100 hover:shadow-2xl transition-shadow duration-300">
+                <p className="text-xs text-[#717182] mb-3 opacity-60 uppercase tracking-wider font-medium">Before</p>
+                <div className="space-y-3">
+                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
                     &quot;You never listen&quot;
                   </div>
-                  <div className="bg-red-50 p-2 rounded text-xs text-red-600">
+                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
                     &quot;That&apos;s not what I meant!&quot;
                   </div>
-                  <div className="bg-red-50 p-2 rounded text-xs text-red-600">
+                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
                     &quot;Why are you being defensive?&quot;
                   </div>
                 </div>
               </div>
 
               {/* Calm Guided Conversation */}
-              <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-green-200">
-                <p className="text-xs text-[#717182] mb-2 opacity-60">After</p>
-                <div className="space-y-2">
-                  <div className="bg-green-50 p-2 rounded text-xs text-green-700">
+              <div className="bg-white p-6 rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition-shadow duration-300">
+                <p className="text-xs text-[#717182] mb-3 opacity-60 uppercase tracking-wider font-medium">After</p>
+                <div className="space-y-3">
+                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
                     &quot;I feel heard when...&quot;
                   </div>
-                  <div className="bg-green-50 p-2 rounded text-xs text-green-700">
+                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
                     &quot;Help me understand...&quot;
                   </div>
-                  <div className="bg-green-50 p-2 rounded text-xs text-green-700">
+                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
                     &quot;What I appreciate is...&quot;
                   </div>
                 </div>
@@ -182,7 +205,8 @@ function Problem() {
             </div>
 
             {/* AI Assistant Indicator */}
-            <div className="absolute -bottom-4 -right-4 bg-[#8CA3B0] text-white px-4 py-2 rounded-full shadow-lg text-sm font-medium">
+            <div className="absolute -bottom-5 right-4 bg-gradient-to-r from-[#8CA3B0] to-[#7a93a0] text-white px-6 py-3 rounded-full shadow-xl text-sm font-medium flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
               AI-Guided
             </div>
           </div>
@@ -320,10 +344,10 @@ function DigitalTwin() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 bg-gradient-to-b from-white via-[#F5F6F7]/50 to-white">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif leading-tight">
             The AI Digital Twin: A Living Model of Connection.
           </h2>
           <p className="text-lg text-[#717182] leading-relaxed">
@@ -338,30 +362,38 @@ function DigitalTwin() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 text-center"
-              style={{ borderTop: `4px solid ${feature.color}` }}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-8 text-center border border-gray-100 relative overflow-hidden"
             >
+              {/* Top accent bar */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-2"
+                style={{ backgroundColor: feature.color }}
+              />
+              
               <div
-                className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
-                style={{ backgroundColor: feature.color + "20" }}
+                className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                style={{ backgroundColor: feature.color + "15" }}
               >
                 <feature.icon
-                  className="w-8 h-8"
+                  className="w-10 h-10"
                   style={{ color: feature.color }}
                 />
               </div>
-              <h3 className="mb-3 text-[#2C3E50] font-serif text-xl">{feature.title}</h3>
-              <p className="text-[#717182]">{feature.description}</p>
+              <h3 className="mb-4 text-[#2C3E50] font-serif text-xl">{feature.title}</h3>
+              <p className="text-[#717182] leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
 
         {/* Visual Representation */}
-        <div className="mt-16 flex justify-center">
-          <div className="relative w-64 h-64">
+        <div className="mt-20 flex justify-center">
+          <div className="relative w-72 h-72">
             {/* Central Core */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#8CA3B0] to-[#E7A59C] opacity-20 animate-pulse"></div>
+              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#8CA3B0]/20 to-[#E7A59C]/20 animate-pulse"></div>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#8CA3B0]/30 to-[#E7A59C]/30 animate-pulse" style={{ animationDelay: "0.5s" }}></div>
             </div>
 
             {/* Orbiting Elements */}
@@ -369,18 +401,32 @@ function DigitalTwin() {
               className="absolute inset-0 animate-spin"
               style={{ animationDuration: "20s" }}
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#8CA3B0]"></div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#8CA3B0] shadow-lg"></div>
             </div>
             <div
               className="absolute inset-0 animate-spin"
               style={{ animationDuration: "15s", animationDirection: "reverse" }}
             >
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#E7A59C]"></div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#E7A59C] shadow-lg"></div>
+            </div>
+            <div
+              className="absolute inset-0 animate-spin"
+              style={{ animationDuration: "25s" }}
+            >
+              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 rounded-full bg-[#8CA3B0]/60"></div>
+            </div>
+            <div
+              className="absolute inset-0 animate-spin"
+              style={{ animationDuration: "18s", animationDirection: "reverse" }}
+            >
+              <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 rounded-full bg-[#E7A59C]/60"></div>
             </div>
 
             {/* Center Icon */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <Brain className="w-12 h-12 text-[#8CA3B0]" />
+              <div className="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center">
+                <Brain className="w-8 h-8 text-[#8CA3B0]" />
+              </div>
             </div>
           </div>
         </div>
@@ -977,10 +1023,10 @@ function Team() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 bg-gradient-to-b from-white to-[#F5F6F7]/50">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif leading-tight">
             The Minds Behind the Machine.
           </h2>
           <p className="text-lg text-[#717182]">
@@ -992,26 +1038,33 @@ function Team() {
           {team.map((member, index) => (
             <div key={index} className="text-center group">
               {/* Avatar */}
-              <div className="mb-6 flex justify-center">
-                <div
-                  className="w-32 h-32 rounded-full border-4 border-white shadow-xl group-hover:scale-110 transition-transform duration-300 flex items-center justify-center text-2xl text-white font-serif"
-                  style={{ backgroundColor: member.color }}
-                >
-                  {member.initials}
+              <div className="mb-8 flex justify-center">
+                <div className="relative">
+                  <div
+                    className="w-36 h-36 rounded-full border-4 border-white shadow-2xl group-hover:scale-105 transition-all duration-500 flex items-center justify-center text-3xl text-white font-serif"
+                    style={{ backgroundColor: member.color }}
+                  >
+                    {member.initials}
+                  </div>
+                  {/* Decorative ring */}
+                  <div 
+                    className="absolute -inset-2 rounded-full border-2 opacity-30 group-hover:opacity-60 transition-opacity duration-300"
+                    style={{ borderColor: member.color }}
+                  />
                 </div>
               </div>
 
               {/* Info */}
-              <h3 className="mb-2 text-[#2C3E50] font-serif text-xl">{member.name}</h3>
-              <p className="text-sm text-[#8CA3B0] mb-3 font-medium">{member.role}</p>
-              <p className="text-sm text-[#717182] italic">{member.focus}</p>
+              <h3 className="mb-2 text-[#2C3E50] font-serif text-2xl">{member.name}</h3>
+              <p className="text-sm text-[#8CA3B0] mb-3 font-semibold uppercase tracking-wider">{member.role}</p>
+              <p className="text-[#717182] italic">{member.focus}</p>
             </div>
           ))}
         </div>
 
         {/* Team Philosophy */}
-        <div className="mt-16 max-w-3xl mx-auto">
-          <div className="bg-gradient-to-r from-[#DCE7F3] to-[#E7A59C]/20 rounded-2xl p-8 text-center">
+        <div className="mt-20 max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/20 rounded-3xl p-10 text-center shadow-lg border border-white">
             <p className="text-lg text-[#2C3E50] leading-relaxed">
               We believe that the most powerful technology doesn&apos;t replace
               human connection — it amplifies it. Our diverse backgrounds in
@@ -1030,105 +1083,113 @@ function Team() {
 // ============================================
 function CTASection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#8CA3B0] via-[#8CA3B0] to-[#E7A59C] relative overflow-hidden">
+    <section className="py-28 bg-gradient-to-br from-[#8CA3B0] via-[#8CA3B0] to-[#E7A59C] relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E7A59C]/20 rounded-full blur-[100px]"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl mb-6 text-white font-serif">
+          <h2 className="text-4xl md:text-6xl mb-8 text-white font-serif leading-tight">
             The Future of Human Connection Starts Here.
           </h2>
 
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-14 max-w-2xl mx-auto leading-relaxed">
             Join us in building the world&apos;s first cognitive companion
             platform. Be part of the journey from first contact to lifelong
             growth.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="bg-white text-[#8CA3B0] hover:bg-gray-100 px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all inline-flex items-center gap-2 font-medium">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
+            <button className="bg-white text-[#8CA3B0] hover:bg-gray-50 px-10 py-5 rounded-xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 inline-flex items-center gap-3 font-semibold text-lg hover:-translate-y-1">
               Join the Beta
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg transition-all inline-flex items-center gap-2 font-medium">
+            <button className="bg-white/10 backdrop-blur-sm border-2 border-white/80 text-white hover:bg-white/20 px-10 py-5 rounded-xl transition-all duration-300 inline-flex items-center gap-3 font-semibold text-lg hover:-translate-y-1">
               <Download className="w-5 h-5" />
               Download Whitepaper
             </button>
           </div>
 
           {/* Abstract Neural Visual */}
-          <div className="mt-16 flex justify-center">
-            <div className="relative w-64 h-32">
+          <div className="flex justify-center">
+            <div className="relative w-80 h-40">
               <svg className="w-full h-full" viewBox="0 0 200 100">
                 {/* Two profiles facing each other */}
                 <ellipse
-                  cx="60"
+                  cx="50"
                   cy="50"
-                  rx="30"
-                  ry="40"
+                  rx="35"
+                  ry="45"
                   fill="white"
-                  opacity="0.2"
+                  opacity="0.15"
                 />
                 <ellipse
-                  cx="140"
+                  cx="150"
                   cy="50"
-                  rx="30"
-                  ry="40"
+                  rx="35"
+                  ry="45"
                   fill="white"
-                  opacity="0.2"
+                  opacity="0.15"
                 />
 
                 {/* Connection threads */}
                 <path
-                  d="M 60 50 Q 100 30 140 50"
+                  d="M 50 50 Q 100 20 150 50"
                   stroke="white"
-                  strokeWidth="1"
+                  strokeWidth="2"
                   fill="none"
                   opacity="0.5"
                   className="animate-pulse"
                 />
                 <path
-                  d="M 60 50 Q 100 50 140 50"
+                  d="M 50 50 Q 100 50 150 50"
                   stroke="white"
-                  strokeWidth="1"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.6"
+                  className="animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <path
+                  d="M 50 50 Q 100 80 150 50"
+                  stroke="white"
+                  strokeWidth="2"
                   fill="none"
                   opacity="0.5"
                   className="animate-pulse"
                   style={{ animationDelay: "1s" }}
                 />
-                <path
-                  d="M 60 50 Q 100 70 140 50"
-                  stroke="white"
-                  strokeWidth="1"
-                  fill="none"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "2s" }}
-                />
 
+                {/* Connection nodes */}
+                <circle cx="50" cy="50" r="6" fill="white" opacity="0.8" />
+                <circle cx="150" cy="50" r="6" fill="white" opacity="0.8" />
+                
                 {/* Glow effect */}
                 <circle
                   cx="100"
                   cy="50"
-                  r="8"
+                  r="12"
                   fill="white"
-                  opacity="0.6"
+                  opacity="0.7"
                   className="animate-pulse"
+                />
+                <circle
+                  cx="100"
+                  cy="50"
+                  r="6"
+                  fill="white"
                 />
               </svg>
             </div>
           </div>
 
           {/* Tagline */}
-          <p className="mt-8 text-white/80 text-lg italic font-serif">
+          <p className="mt-10 text-white/70 text-lg italic font-serif tracking-wide">
             Shared empathy • Neural threads • Infinite growth
           </p>
         </div>
