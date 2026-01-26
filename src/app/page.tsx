@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sparkles,
   ArrowRight,
@@ -14,8 +14,6 @@ import {
   Activity,
   Users,
   Building2,
-  BookOpen,
-  ExternalLink,
   Globe,
   Shield,
   TrendingUp,
@@ -23,117 +21,218 @@ import {
   Mail,
   Linkedin,
   Twitter,
+  Menu,
+  X,
+  ChevronDown,
 } from "lucide-react";
+
+// ============================================
+// NAVIGATION
+// ============================================
+function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-xl shadow-lg py-4"
+          : "bg-transparent py-6"
+      }`}
+    >
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2">
+          <Sparkles className={`w-6 h-6 ${scrolled ? "text-[#8CA3B0]" : "text-[#8CA3B0]"}`} />
+          <span className={`font-serif text-xl tracking-wide ${scrolled ? "text-[#2C3E50]" : "text-[#2C3E50]"}`}>
+            NeuralConnexions
+          </span>
+        </a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          <a href="#solution" className={`text-sm font-medium transition-colors hover:text-[#8CA3B0] ${scrolled ? "text-[#717182]" : "text-[#717182]"}`}>
+            Solution
+          </a>
+          <a href="#science" className={`text-sm font-medium transition-colors hover:text-[#8CA3B0] ${scrolled ? "text-[#717182]" : "text-[#717182]"}`}>
+            Science
+          </a>
+          <a href="#team" className={`text-sm font-medium transition-colors hover:text-[#8CA3B0] ${scrolled ? "text-[#717182]" : "text-[#717182]"}`}>
+            Team
+          </a>
+          <button className="bg-[#8CA3B0] hover:bg-[#7a93a0] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:shadow-lg">
+            Join Beta
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl p-6 space-y-4">
+          <a href="#solution" className="block text-[#717182] hover:text-[#8CA3B0] font-medium">Solution</a>
+          <a href="#science" className="block text-[#717182] hover:text-[#8CA3B0] font-medium">Science</a>
+          <a href="#team" className="block text-[#717182] hover:text-[#8CA3B0] font-medium">Team</a>
+          <button className="w-full bg-[#8CA3B0] text-white py-3 rounded-full font-medium">
+            Join Beta
+          </button>
+        </div>
+      )}
+    </nav>
+  );
+}
 
 // ============================================
 // HERO SECTION
 // ============================================
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/30">
-      {/* Background Neural Network Visual */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#8CA3B0]/30 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E7A59C]/30 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#DCE7F3]/40 rounded-full filter blur-[120px]"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#DCE7F3] via-[#F5F6F7] to-[#faf5f4]">
+        {/* Floating orbs */}
+        <div className="absolute top-20 left-[10%] w-72 h-72 bg-[#8CA3B0]/20 rounded-full blur-[80px] animate-pulse" />
+        <div className="absolute bottom-20 right-[10%] w-96 h-96 bg-[#E7A59C]/25 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#DCE7F3]/50 rounded-full blur-[120px]" />
+        
+        {/* Decorative grid */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(#8CA3B0 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20 text-center">
-        {/* Logo & Tagline */}
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-3 mb-3">
-            <Sparkles className="w-8 h-8 text-[#8CA3B0]" />
-            <span className="tracking-[0.3em] text-[#8CA3B0] uppercase font-medium text-sm">
-              NeuralConnexions
+      <div className="relative z-10 container mx-auto px-6 pt-24 pb-12">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#8CA3B0]/20 rounded-full px-4 py-2 mb-8 shadow-sm">
+            <span className="w-2 h-2 bg-[#E7A59C] rounded-full animate-pulse" />
+            <span className="text-sm text-[#717182] font-medium">Now accepting beta users</span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#2C3E50] mb-6 leading-[1.1] tracking-tight">
+            The World&apos;s First
+            <span className="block mt-2 bg-gradient-to-r from-[#8CA3B0] to-[#E7A59C] bg-clip-text text-transparent">
+              Cognitive Companion
             </span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-xl md:text-2xl text-[#717182] mb-10 max-w-2xl mx-auto leading-relaxed">
+            AI that understands human connection — guiding you from first contact to lifelong growth.
+          </p>
+
+          {/* Tagline */}
+          <p className="text-[#8CA3B0] font-serif italic text-lg mb-12">
+            Find • Nurture • Sustain
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="group bg-[#2C3E50] hover:bg-[#1a2836] text-white pl-8 pr-6 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-3 font-medium text-lg">
+              Explore the Platform
+              <span className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <ArrowRight className="w-5 h-5" />
+              </span>
+            </button>
+            <button className="text-[#717182] hover:text-[#2C3E50] px-8 py-4 font-medium text-lg transition-colors inline-flex items-center gap-2">
+              Watch Demo
+              <ChevronDown className="w-5 h-5" />
+            </button>
           </div>
-          <p className="text-[#8CA3B0] italic font-serif text-lg">Find • Nurture • Sustain</p>
-        </div>
 
-        {/* Main Headline */}
-        <h1 className="text-5xl md:text-7xl mb-6 text-[#2C3E50] max-w-4xl mx-auto font-serif leading-tight">
-          The World&apos;s First Cognitive Companion
-        </h1>
-
-        {/* Subheadline */}
-        <p className="text-xl md:text-2xl text-[#717182] mb-12 max-w-3xl mx-auto leading-relaxed">
-          AI that understands human connection — guiding you from first contact
-          to lifelong growth.
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="bg-[#8CA3B0] hover:bg-[#7a93a0] text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 font-medium text-lg hover:-translate-y-0.5">
-            Explore the AI Companion
-            <ArrowRight className="w-5 h-5" />
-          </button>
-          <button className="bg-white/80 backdrop-blur-sm border-2 border-[#8CA3B0] text-[#8CA3B0] hover:bg-[#8CA3B0] hover:text-white px-8 py-4 rounded-xl transition-all duration-300 font-medium text-lg hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-            Join the Beta
-          </button>
-        </div>
-
-        {/* Visual Concept - Abstract Neural Faces */}
-        <div className="mt-20 relative h-64">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-80 h-80 relative">
-              {/* Connection lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
-                {/* Outer ring */}
-                <circle cx="100" cy="100" r="70" fill="none" stroke="#8CA3B0" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
+          {/* Hero Visual */}
+          <div className="mt-20 relative">
+            <div className="relative w-full max-w-3xl mx-auto">
+              {/* Main illustration container */}
+              <div className="relative bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/80 p-8 md:p-12">
+                {/* Connection visualization */}
+                <svg className="w-full h-48 md:h-64" viewBox="0 0 400 200">
+                  {/* Left person silhouette */}
+                  <ellipse cx="80" cy="100" rx="45" ry="60" fill="#8CA3B0" opacity="0.15" />
+                  <circle cx="80" cy="60" r="25" fill="#8CA3B0" opacity="0.2" />
+                  
+                  {/* Right person silhouette */}
+                  <ellipse cx="320" cy="100" rx="45" ry="60" fill="#E7A59C" opacity="0.15" />
+                  <circle cx="320" cy="60" r="25" fill="#E7A59C" opacity="0.2" />
+                  
+                  {/* Connection paths */}
+                  <path d="M 120 80 Q 200 40 280 80" stroke="#8CA3B0" strokeWidth="2" fill="none" opacity="0.6" strokeDasharray="8 4">
+                    <animate attributeName="stroke-dashoffset" from="0" to="24" dur="2s" repeatCount="indefinite" />
+                  </path>
+                  <path d="M 120 100 Q 200 100 280 100" stroke="#2C3E50" strokeWidth="3" fill="none" opacity="0.4">
+                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2s" repeatCount="indefinite" />
+                  </path>
+                  <path d="M 120 120 Q 200 160 280 120" stroke="#E7A59C" strokeWidth="2" fill="none" opacity="0.6" strokeDasharray="8 4">
+                    <animate attributeName="stroke-dashoffset" from="24" to="0" dur="2s" repeatCount="indefinite" />
+                  </path>
+                  
+                  {/* Central AI node */}
+                  <circle cx="200" cy="100" r="30" fill="url(#centerGradient)" opacity="0.9">
+                    <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="200" cy="100" r="20" fill="white" />
+                  
+                  {/* Pulse rings */}
+                  <circle cx="200" cy="100" r="40" stroke="#8CA3B0" strokeWidth="1" fill="none" opacity="0.3">
+                    <animate attributeName="r" values="35;55;35" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  
+                  {/* Small nodes */}
+                  <circle cx="150" cy="70" r="6" fill="#8CA3B0" opacity="0.5" />
+                  <circle cx="250" cy="70" r="6" fill="#E7A59C" opacity="0.5" />
+                  <circle cx="150" cy="130" r="6" fill="#E7A59C" opacity="0.5" />
+                  <circle cx="250" cy="130" r="6" fill="#8CA3B0" opacity="0.5" />
+                  
+                  <defs>
+                    <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8CA3B0" />
+                      <stop offset="100%" stopColor="#E7A59C" />
+                    </linearGradient>
+                  </defs>
+                </svg>
                 
-                {/* Connection paths */}
-                <path
-                  d="M 50 100 Q 100 60 150 100"
-                  stroke="#8CA3B0"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.4"
-                  className="animate-pulse"
-                />
-                <path
-                  d="M 50 100 Q 100 140 150 100"
-                  stroke="#E7A59C"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.4"
-                  className="animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                />
-                <path
-                  d="M 50 100 L 150 100"
-                  stroke="#8CA3B0"
-                  strokeWidth="1.5"
-                  fill="none"
-                  opacity="0.3"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                
-                {/* Nodes */}
-                <circle cx="50" cy="100" r="8" fill="#8CA3B0" opacity="0.7" />
-                <circle cx="150" cy="100" r="8" fill="#E7A59C" opacity="0.7" />
-                <circle cx="100" cy="60" r="5" fill="#8CA3B0" opacity="0.5" />
-                <circle cx="100" cy="140" r="5" fill="#E7A59C" opacity="0.5" />
-                <circle cx="100" cy="100" r="6" fill="#8CA3B0" opacity="0.6" className="animate-pulse" />
-                
-                {/* Small decorative nodes */}
-                <circle cx="75" cy="80" r="3" fill="#8CA3B0" opacity="0.3" />
-                <circle cx="125" cy="80" r="3" fill="#E7A59C" opacity="0.3" />
-                <circle cx="75" cy="120" r="3" fill="#E7A59C" opacity="0.3" />
-                <circle cx="125" cy="120" r="3" fill="#8CA3B0" opacity="0.3" />
-              </svg>
+                {/* Labels */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-6 text-sm">
+                  <span className="flex items-center gap-2 text-[#717182]">
+                    <span className="w-3 h-3 bg-[#8CA3B0] rounded-full" />
+                    Person A
+                  </span>
+                  <span className="flex items-center gap-2 text-[#717182]">
+                    <span className="w-3 h-3 bg-gradient-to-r from-[#8CA3B0] to-[#E7A59C] rounded-full" />
+                    AI Twin
+                  </span>
+                  <span className="flex items-center gap-2 text-[#717182]">
+                    <span className="w-3 h-3 bg-[#E7A59C] rounded-full" />
+                    Person B
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-7 h-12 border-2 border-[#8CA3B0]/60 rounded-full flex justify-center pt-3 bg-white/30 backdrop-blur-sm">
-          <div className="w-1.5 h-3 bg-[#8CA3B0] rounded-full"></div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8CA3B0]">
+        <span className="text-xs font-medium tracking-wider uppercase">Scroll</span>
+        <div className="w-6 h-10 border-2 border-[#8CA3B0]/40 rounded-full flex justify-center pt-2">
+          <div className="w-1.5 h-3 bg-[#8CA3B0]/60 rounded-full animate-bounce" />
         </div>
       </div>
     </section>
@@ -141,74 +240,86 @@ function Hero() {
 }
 
 // ============================================
-// PROBLEM SECTION
+// PROBLEM / SOLUTION SECTION
 // ============================================
-function Problem() {
+function Solution() {
   return (
-    <section className="py-28 bg-gradient-to-br from-[#DCE7F3]/50 via-white to-[#F5F6F7]">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
-          <div>
-            <h2 className="text-4xl md:text-5xl mb-8 text-[#2C3E50] font-serif leading-tight">
-              Connected — yet misunderstood.
-            </h2>
-            <p className="text-lg text-[#717182] leading-relaxed mb-6">
-              Every day, subtle miscommunication erodes emotional safety,
-              creativity, and trust. Traditional dating apps and therapy tools
-              address fragments of the problem — not the whole human experience.
-            </p>
-            <p className="text-lg text-[#717182] leading-relaxed">
-              NeuralConnexions bridges this gap through an{" "}
-              <span className="text-[#8CA3B0] font-semibold">
-                AI Relationship Concierge
-              </span>{" "}
-              that continuously learns and adapts to how people connect and
-              grow.
-            </p>
+    <section id="solution" className="py-24 md:py-32 bg-white relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#DCE7F3]/30 to-transparent" />
+      
+      <div className="container mx-auto px-6 relative">
+        {/* Section header */}
+        <div className="max-w-3xl mb-20">
+          <span className="text-[#E7A59C] font-medium text-sm tracking-wider uppercase mb-4 block">The Problem</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2C3E50] leading-tight mb-6">
+            Connected — yet deeply misunderstood.
+          </h2>
+          <p className="text-xl text-[#717182] leading-relaxed">
+            Every day, subtle miscommunication erodes emotional safety, creativity, and trust. Traditional tools address fragments — not the whole human experience.
+          </p>
+        </div>
+
+        {/* Before/After comparison */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl">
+          {/* Before */}
+          <div className="group">
+            <div className="bg-gradient-to-br from-red-50 to-white rounded-3xl p-8 border border-red-100 shadow-sm hover:shadow-xl transition-all duration-500">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center">
+                  <X className="w-6 h-6 text-red-500" />
+                </div>
+                <div>
+                  <span className="text-xs text-red-400 font-medium tracking-wider uppercase">Without AI</span>
+                  <h3 className="text-[#2C3E50] font-serif text-xl">Miscommunication</h3>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  "You never listen to me",
+                  "That's not what I meant!",
+                  "Why are you being so defensive?"
+                ].map((text, i) => (
+                  <div key={i} className="bg-white p-4 rounded-2xl border border-red-100 text-red-600 text-sm shadow-sm">
+                    &ldquo;{text}&rdquo;
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Visual */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-6">
-              {/* Text Chaos */}
-              <div className="bg-white p-6 rounded-2xl shadow-xl border border-red-100 hover:shadow-2xl transition-shadow duration-300">
-                <p className="text-xs text-[#717182] mb-3 opacity-60 uppercase tracking-wider font-medium">Before</p>
-                <div className="space-y-3">
-                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
-                    &quot;You never listen&quot;
-                  </div>
-                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
-                    &quot;That&apos;s not what I meant!&quot;
-                  </div>
-                  <div className="bg-red-50 p-3 rounded-xl text-sm text-red-600 border border-red-100">
-                    &quot;Why are you being defensive?&quot;
-                  </div>
+          {/* After */}
+          <div className="group">
+            <div className="bg-gradient-to-br from-emerald-50 to-white rounded-3xl p-8 border border-emerald-100 shadow-sm hover:shadow-xl transition-all duration-500">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center">
+                  <Heart className="w-6 h-6 text-emerald-500" />
+                </div>
+                <div>
+                  <span className="text-xs text-emerald-500 font-medium tracking-wider uppercase">With NeuralConnexions</span>
+                  <h3 className="text-[#2C3E50] font-serif text-xl">True Understanding</h3>
                 </div>
               </div>
-
-              {/* Calm Guided Conversation */}
-              <div className="bg-white p-6 rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition-shadow duration-300">
-                <p className="text-xs text-[#717182] mb-3 opacity-60 uppercase tracking-wider font-medium">After</p>
-                <div className="space-y-3">
-                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
-                    &quot;I feel heard when...&quot;
+              <div className="space-y-3">
+                {[
+                  "I feel heard when you...",
+                  "Help me understand your perspective",
+                  "What I appreciate about you is..."
+                ].map((text, i) => (
+                  <div key={i} className="bg-white p-4 rounded-2xl border border-emerald-100 text-emerald-700 text-sm shadow-sm">
+                    &ldquo;{text}&rdquo;
                   </div>
-                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
-                    &quot;Help me understand...&quot;
-                  </div>
-                  <div className="bg-green-50 p-3 rounded-xl text-sm text-green-700 border border-green-100">
-                    &quot;What I appreciate is...&quot;
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* AI Assistant Indicator */}
-            <div className="absolute -bottom-5 right-4 bg-gradient-to-r from-[#8CA3B0] to-[#7a93a0] text-white px-6 py-3 rounded-full shadow-xl text-sm font-medium flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              AI-Guided
-            </div>
+        {/* AI badge */}
+        <div className="flex justify-center mt-12">
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#8CA3B0] to-[#E7A59C] text-white px-6 py-3 rounded-full shadow-lg">
+            <Sparkles className="w-5 h-5" />
+            <span className="font-medium">Powered by AI Micro-Interventions</span>
           </div>
         </div>
       </div>
@@ -217,101 +328,83 @@ function Problem() {
 }
 
 // ============================================
-// CORE CONCEPT SECTION
+// HOW IT WORKS
 // ============================================
-function CoreConcept() {
-  const features = [
+function HowItWorks() {
+  const steps = [
     {
       icon: Compass,
+      phase: "Find",
       title: "Intentional Discovery",
+      description: "Smart matchmaking & pre-conversation modeling for authentic, low-stress introductions.",
       color: "#8CA3B0",
     },
     {
       icon: Sprout,
+      phase: "Nurture",
       title: "Proactive Growth",
+      description: "Real-time communication nudges that build emotional awareness and deeper connection.",
       color: "#E7A59C",
     },
     {
       icon: Heart,
-      title: "Sustained Harmony",
+      phase: "Sustain",
+      title: "Lasting Harmony",
+      description: "Predictive simulations & shared goal tracking for long-term relational health.",
       color: "#8CA3B0",
     },
   ];
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
-            AI for Human Augmentation
+    <section className="py-24 md:py-32 bg-[#F5F6F7] relative">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-50" style={{
+        backgroundImage: `radial-gradient(circle at 2px 2px, #8CA3B0 1px, transparent 0)`,
+        backgroundSize: '48px 48px'
+      }} />
+      
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="text-[#8CA3B0] font-medium text-sm tracking-wider uppercase mb-4 block">How It Works</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2C3E50] mb-6">
+            The Relationship Lifecycle
           </h2>
-          <p className="text-lg text-[#717182] leading-relaxed">
-            NeuralConnexions redefines human-AI synergy. Our proprietary AI
-            Digital Twin helps you offload the cognitive strain of
-            communication, empowering emotional clarity, productivity, and
-            deeper relationships.
+          <p className="text-xl text-[#717182]">
+            A complete framework for every stage of human connection
           </p>
         </div>
 
-        {/* Flow Diagram */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-          {features.map((feature, index) => (
-            <div key={index} className="flex items-center gap-8">
-              <div className="flex flex-col items-center text-center">
-                <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center mb-4 shadow-lg"
-                  style={{
-                    backgroundColor: feature.color + "20",
-                    border: `2px solid ${feature.color}`,
-                  }}
-                >
-                  <feature.icon
-                    className="w-10 h-10"
-                    style={{ color: feature.color }}
-                  />
-                </div>
-                <h3 className="text-[#2C3E50] font-serif text-lg">{feature.title}</h3>
-              </div>
-
-              {index < features.length - 1 && (
-                <div className="hidden md:block">
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    className="text-[#8CA3B0]"
-                  >
-                    <path
-                      d="M 10 20 L 30 20"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      markerEnd="url(#arrowhead)"
-                    />
-                    <defs>
-                      <marker
-                        id="arrowhead"
-                        markerWidth="10"
-                        markerHeight="7"
-                        refX="9"
-                        refY="3.5"
-                        orient="auto"
-                      >
-                        <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
-                      </marker>
-                    </defs>
-                  </svg>
-                </div>
+        {/* Steps */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => (
+            <div key={index} className="relative group">
+              {/* Connector line */}
+              {index < steps.length - 1 && (
+                <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-[#8CA3B0]/30 to-[#E7A59C]/30" />
               )}
+              
+              <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 relative">
+                {/* Phase badge */}
+                <div 
+                  className="absolute -top-4 left-8 px-4 py-1.5 rounded-full text-white text-sm font-medium shadow-lg"
+                  style={{ backgroundColor: step.color }}
+                >
+                  {step.phase}
+                </div>
+                
+                {/* Icon */}
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mt-4 transition-transform duration-300 group-hover:scale-110"
+                  style={{ backgroundColor: step.color + "15" }}
+                >
+                  <step.icon className="w-8 h-8" style={{ color: step.color }} />
+                </div>
+                
+                <h3 className="font-serif text-2xl text-[#2C3E50] mb-4">{step.title}</h3>
+                <p className="text-[#717182] leading-relaxed">{step.description}</p>
+              </div>
             </div>
           ))}
-        </div>
-
-        {/* Subtitle */}
-        <div className="text-center">
-          <p className="text-[#8CA3B0] italic text-lg font-serif">
-            Find → Nurture → Sustain
-          </p>
         </div>
       </div>
     </section>
@@ -326,597 +419,85 @@ function DigitalTwin() {
     {
       icon: MessageSquare,
       title: "Micro-Counseling Prompts",
-      description: "Real-time, contextual phrasing support.",
-      color: "#8CA3B0",
+      description: "Real-time, contextual phrasing support when you need it most.",
     },
     {
       icon: Brain,
-      title: "Behavioral Insights Engine",
-      description: "Tone, empathy, and rhythm analysis.",
-      color: "#E7A59C",
+      title: "Behavioral Insights",
+      description: "Deep analysis of tone, empathy patterns, and communication rhythm.",
     },
-    {
-      icon: Heart,
-      title: "Relationship OS",
-      description: "A shared dashboard for couples or teams.",
-      color: "#8CA3B0",
-    },
-  ];
-
-  return (
-    <section className="py-28 bg-gradient-to-b from-white via-[#F5F6F7]/50 to-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif leading-tight">
-            The AI Digital Twin: A Living Model of Connection.
-          </h2>
-          <p className="text-lg text-[#717182] leading-relaxed">
-            A continuously evolving relationship model that mirrors your
-            communication style, predicts emotional friction, and guides you
-            through real-time micro-interventions.
-          </p>
-        </div>
-
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-8 text-center border border-gray-100 relative overflow-hidden"
-            >
-              {/* Top accent bar */}
-              <div 
-                className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-2"
-                style={{ backgroundColor: feature.color }}
-              />
-              
-              <div
-                className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                style={{ backgroundColor: feature.color + "15" }}
-              >
-                <feature.icon
-                  className="w-10 h-10"
-                  style={{ color: feature.color }}
-                />
-              </div>
-              <h3 className="mb-4 text-[#2C3E50] font-serif text-xl">{feature.title}</h3>
-              <p className="text-[#717182] leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Visual Representation */}
-        <div className="mt-20 flex justify-center">
-          <div className="relative w-72 h-72">
-            {/* Central Core */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#8CA3B0]/20 to-[#E7A59C]/20 animate-pulse"></div>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#8CA3B0]/30 to-[#E7A59C]/30 animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-            </div>
-
-            {/* Orbiting Elements */}
-            <div
-              className="absolute inset-0 animate-spin"
-              style={{ animationDuration: "20s" }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#8CA3B0] shadow-lg"></div>
-            </div>
-            <div
-              className="absolute inset-0 animate-spin"
-              style={{ animationDuration: "15s", animationDirection: "reverse" }}
-            >
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#E7A59C] shadow-lg"></div>
-            </div>
-            <div
-              className="absolute inset-0 animate-spin"
-              style={{ animationDuration: "25s" }}
-            >
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-3 h-3 rounded-full bg-[#8CA3B0]/60"></div>
-            </div>
-            <div
-              className="absolute inset-0 animate-spin"
-              style={{ animationDuration: "18s", animationDirection: "reverse" }}
-            >
-              <div className="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 rounded-full bg-[#E7A59C]/60"></div>
-            </div>
-
-            {/* Center Icon */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center">
-                <Brain className="w-8 h-8 text-[#8CA3B0]" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// LIFECYCLE JOURNEY SECTION
-// ============================================
-function LifecycleJourney() {
-  const phases = [
-    {
-      phase: "Find",
-      aiFunction: "Smart matchmaking & pre-conversation modeling",
-      userValue: "Authentic, low-stress introductions",
-      color: "#8CA3B0",
-    },
-    {
-      phase: "Nurture",
-      aiFunction: "Real-time communication nudges",
-      userValue: "Emotional awareness & proactive growth",
-      color: "#E7A59C",
-    },
-    {
-      phase: "Sustain",
-      aiFunction: "Predictive simulations & shared goal tracking",
-      userValue: "Long-term relational health",
-      color: "#8CA3B0",
-    },
-  ];
-
-  return (
-    <section className="py-24 bg-gradient-to-br from-[#DCE7F3]/40 to-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
-            Lifecycle Journey: Find → Nurture → Sustain
-          </h2>
-          <p className="text-lg text-[#717182]">
-            A complete relationship evolution framework powered by AI
-          </p>
-        </div>
-
-        {/* Circular Diagram */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="relative aspect-square max-w-md mx-auto mb-12">
-            {/* Circle */}
-            <svg className="w-full h-full" viewBox="0 0 200 200">
-              <circle
-                cx="100"
-                cy="100"
-                r="80"
-                fill="none"
-                stroke="#DCE7F3"
-                strokeWidth="2"
-                strokeDasharray="5,5"
-              />
-
-              {/* Phase markers */}
-              <circle cx="100" cy="20" r="8" fill="#8CA3B0" />
-              <circle cx="169" cy="130" r="8" fill="#E7A59C" />
-              <circle cx="31" cy="130" r="8" fill="#8CA3B0" />
-
-              {/* Arrows */}
-              <path
-                d="M 100 20 Q 169 75 169 130"
-                fill="none"
-                stroke="#8CA3B0"
-                strokeWidth="2"
-                opacity="0.3"
-              />
-              <path
-                d="M 169 130 Q 100 185 31 130"
-                fill="none"
-                stroke="#E7A59C"
-                strokeWidth="2"
-                opacity="0.3"
-              />
-              <path
-                d="M 31 130 Q 66 75 100 20"
-                fill="none"
-                stroke="#8CA3B0"
-                strokeWidth="2"
-                opacity="0.3"
-              />
-            </svg>
-
-            {/* Labels */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12">
-              <span className="text-[#8CA3B0] font-serif font-medium">Find</span>
-            </div>
-            <div className="absolute bottom-0 right-0 translate-x-8">
-              <span className="text-[#E7A59C] font-serif font-medium">Nurture</span>
-            </div>
-            <div className="absolute bottom-0 left-0 -translate-x-8">
-              <span className="text-[#8CA3B0] font-serif font-medium">Sustain</span>
-            </div>
-          </div>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
-              <thead>
-                <tr className="bg-gradient-to-r from-[#DCE7F3] to-[#E7A59C]/30">
-                  <th className="p-4 text-left text-[#2C3E50] font-serif">Phase</th>
-                  <th className="p-4 text-left text-[#2C3E50] font-serif">AI Function</th>
-                  <th className="p-4 text-left text-[#2C3E50] font-serif">User Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {phases.map((item, index) => (
-                  <tr
-                    key={index}
-                    className="border-t border-gray-100 hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="p-4">
-                      <span
-                        className="inline-block px-3 py-1 rounded-full text-white text-sm font-medium"
-                        style={{ backgroundColor: item.color }}
-                      >
-                        {item.phase}
-                      </span>
-                    </td>
-                    <td className="p-4 text-[#717182]">{item.aiFunction}</td>
-                    <td className="p-4 text-[#717182]">{item.userValue}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// INNOVATION SECTION
-// ============================================
-function Innovation() {
-  const pillars = [
-    {
-      icon: Dna,
-      title: "Neuro-Linguistic Profiling",
-      description: "Analyzes communication tone, syntax, and emotion.",
-      color: "#8CA3B0",
-    },
-    {
-      icon: RefreshCw,
-      title: "Behavioral Reinforcement Learning",
-      description: "Predicts and adapts to relational outcomes.",
-      color: "#E7A59C",
-    },
-    {
-      icon: Activity,
-      title: "Cognitive Augmentation R&D",
-      description:
-        "Integrates biometric and neural data to retrain emotional resilience.",
-      color: "#8CA3B0",
-    },
-  ];
-
-  return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 text-[#2C3E50] font-serif">
-            The Science Behind Empathy.
-          </h2>
-          <p className="text-xl text-[#8CA3B0] mb-8">
-            Where neuro-linguistics meets adaptive AI.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {pillars.map((pillar, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              {/* Background decoration */}
-              <div
-                className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-10 -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"
-                style={{ backgroundColor: pillar.color }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <div
-                  className="w-16 h-16 rounded-2xl mb-6 flex items-center justify-center"
-                  style={{ backgroundColor: pillar.color + "20" }}
-                >
-                  <pillar.icon
-                    className="w-8 h-8"
-                    style={{ color: pillar.color }}
-                  />
-                </div>
-
-                <h3 className="mb-4 text-[#2C3E50] font-serif text-xl">{pillar.title}</h3>
-                <p className="text-[#717182] leading-relaxed">
-                  {pillar.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional visual */}
-        <div className="mt-16 text-center">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-[#8CA3B0] to-[#E7A59C] text-white rounded-full shadow-lg font-medium">
-            3 Innovation Pillars • Infinite Possibilities
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// BUSINESS MODEL SECTION
-// ============================================
-function BusinessModel() {
-  const streams = [
     {
       icon: Users,
-      stream: "Freemium Insights",
-      description: "Self-awareness reports + AI nudges",
-      value: "Broad user funnel",
-      color: "#8CA3B0",
-    },
-    {
-      icon: Heart,
-      stream: "Couple Mode Subscription",
-      description: "Relationship OS for couples",
-      value: "High-LTV recurring model",
-      price: "£15–£20/mo",
-      color: "#E7A59C",
-    },
-    {
-      icon: Building2,
-      stream: "Corporate Wellness API",
-      description: "Workforce relationship analytics",
-      value: "Scalable B2B revenue",
-      color: "#8CA3B0",
+      title: "Relationship Dashboard",
+      description: "A shared space for couples or teams to track growth together.",
     },
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#DCE7F3]/30 to-[#F5F6F7]">
+    <section id="science" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
-            Sustainable Growth Through Connection
-          </h2>
-          <p className="text-lg text-[#717182]">
-            Multiple revenue streams designed for scale and impact
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {streams.map((stream, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              {/* Icon */}
-              <div
-                className="w-14 h-14 rounded-xl mb-6 flex items-center justify-center"
-                style={{ backgroundColor: stream.color + "20" }}
-              >
-                <stream.icon
-                  className="w-7 h-7"
-                  style={{ color: stream.color }}
-                />
-              </div>
-
-              {/* Stream Name */}
-              <h3 className="mb-3 text-[#2C3E50] font-serif text-xl">{stream.stream}</h3>
-
-              {/* Price if available */}
-              {stream.price && (
-                <div className="mb-4">
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-sm text-white font-medium"
-                    style={{ backgroundColor: stream.color }}
-                  >
-                    {stream.price}
-                  </span>
-                </div>
-              )}
-
-              {/* Description */}
-              <p className="text-[#717182] mb-4">{stream.description}</p>
-
-              {/* Value Proposition */}
-              <div className="pt-4 border-t border-gray-100">
-                <p className="text-sm text-[#8CA3B0]">
-                  <span className="opacity-60">Value:</span> {stream.value}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Summary */}
-        <div className="mt-12 text-center">
-          <p className="text-[#717182] text-lg">
-            A diversified model balancing social impact with financial
-            sustainability
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// IMAGE WITH FALLBACK COMPONENT
-// ============================================
-function ImageWithFallback({
-  src,
-  alt,
-  className,
-  ...props
-}: React.ImgHTMLAttributes<HTMLImageElement>) {
-  const [didError, setDidError] = useState(false);
-  const ERROR_IMG_SRC =
-    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg==";
-
-  if (didError) {
-    return (
-      <div
-        className={`inline-block bg-gray-100 text-center align-middle ${className ?? ""}`}
-      >
-        <div className="flex items-center justify-center w-full h-full">
-          <img src={ERROR_IMG_SRC} alt="Error loading image" {...props} />
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      onError={() => setDidError(true)}
-      {...props}
-    />
-  );
-}
-
-// ============================================
-// RESEARCH HUB SECTION
-// ============================================
-function ResearchHub() {
-  const featuredResearch = [
-    {
-      title: "How Attachment Shapes Adult Intimacy",
-      abstract: "How childhood patterns influence adult relationships.",
-      image:
-        "https://images.unsplash.com/photo-1680603007731-d8da76c235ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3VwbGUlMjByZWxhdGlvbnNoaXB8ZW58MXx8fHwxNzYwMDA0MTQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      title: "Emotional Safety: The Hidden Currency of Relationships",
-      abstract: "Co-regulation and trust through the lens of Polyvagal Theory.",
-      image:
-        "https://images.unsplash.com/photo-1555728333-5ff9f9ff9538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxodW1hbiUyMGNvbm5lY3Rpb24lMjBoYW5kc3xlbnwxfHx8fDE3NjAwMDQxNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      title: "Why We Pick Who We Pick",
-      abstract: "Attachment pairings and repetition compulsion explained.",
-      image:
-        "https://images.unsplash.com/photo-1556695725-3cc4a29d4ef7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwc3ljaG9sb2d5JTIwdGhlcmFweXxlbnwxfHx8fDE3NjAwMDQxNTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-  ];
-
-  const academicReferences = [
-    {
-      title: "Attachment in Adulthood",
-      authors: "Mikulincer & Shaver",
-      year: "2007",
-      link: "https://pubmed.ncbi.nlm.nih.gov/",
-    },
-    {
-      title: "Attachment, Emotion Regulation, and Wellbeing in Couples",
-      authors: "Brandão et al.",
-      year: "2019",
-      link: "https://pubmed.ncbi.nlm.nih.gov/",
-    },
-    {
-      title: "Polyvagal Theory",
-      authors: "Porges",
-      year: "2011",
-      link: "https://pubmed.ncbi.nlm.nih.gov/",
-    },
-  ];
-
-  return (
-    <section className="py-24 bg-gradient-to-br from-[#DCE7F3]/20 via-white to-[#E7A59C]/10">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <BookOpen className="w-8 h-8 text-[#8CA3B0]" />
-            <h2 className="text-4xl md:text-5xl text-[#2C3E50] font-serif">
-              The Science of Human Connection.
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Content */}
+          <div>
+            <span className="text-[#E7A59C] font-medium text-sm tracking-wider uppercase mb-4 block">Core Technology</span>
+            <h2 className="text-4xl md:text-5xl font-serif text-[#2C3E50] mb-6 leading-tight">
+              Your AI Digital Twin
             </h2>
-          </div>
-          <p className="text-lg text-[#717182]">
-            Explore the psychology, neuroscience, and AI research behind
-            NeuralConnexions.
-          </p>
-        </div>
+            <p className="text-xl text-[#717182] mb-10 leading-relaxed">
+              A continuously evolving relationship model that mirrors your communication style, predicts emotional friction, and guides you through real-time interventions.
+            </p>
 
-        {/* Featured Research Series */}
-        <div className="mb-16">
-          <h3 className="text-2xl mb-8 text-[#2C3E50] text-center font-serif">
-            Featured Research Series
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {featuredResearch.map((research, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer bg-white"
-              >
-                <div className="relative h-48 overflow-hidden bg-gray-100">
-                  <ImageWithFallback
-                    src={research.image}
-                    alt={research.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-
-                <div className="p-6">
-                  <h4 className="mb-3 text-[#2C3E50] group-hover:text-[#8CA3B0] transition-colors font-serif text-lg">
-                    {research.title}
-                  </h4>
-                  <p className="text-sm text-[#717182] mb-4 leading-relaxed">
-                    {research.abstract}
-                  </p>
-                  <button className="text-[#8CA3B0] hover:text-[#7a93a0] p-0 h-auto inline-flex items-center gap-1 font-medium text-sm">
-                    Read <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Academic References */}
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl mb-8 text-[#2C3E50] text-center font-serif">
-            Academic References
-          </h3>
-
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <div className="space-y-4">
-              {academicReferences.map((ref, index) => (
-                <div
-                  key={index}
-                  className="flex items-start justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors group"
-                >
-                  <div className="flex-1">
-                    <h4 className="text-[#2C3E50] mb-1 font-serif">{ref.title}</h4>
-                    <p className="text-sm text-[#717182]">
-                      {ref.authors} ({ref.year})
-                    </p>
+            <div className="space-y-6">
+              {features.map((feature, index) => (
+                <div key={index} className="flex gap-4 group">
+                  <div className="w-14 h-14 bg-[#DCE7F3] rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#8CA3B0] transition-colors duration-300">
+                    <feature.icon className="w-6 h-6 text-[#8CA3B0] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <a
-                    href={ref.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#8CA3B0] hover:text-[#7a93a0] transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
+                  <div>
+                    <h4 className="font-serif text-lg text-[#2C3E50] mb-1">{feature.title}</h4>
+                    <p className="text-[#717182] text-sm leading-relaxed">{feature.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="text-center mt-8">
-            <button className="border-2 border-[#8CA3B0] text-[#8CA3B0] hover:bg-[#8CA3B0] hover:text-white px-6 py-3 rounded-lg transition-all font-medium">
-              Subscribe for new research drops
-            </button>
+          {/* Right: Visual */}
+          <div className="relative">
+            <div className="relative w-full aspect-square max-w-lg mx-auto">
+              {/* Outer ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#DCE7F3] animate-spin" style={{ animationDuration: "60s" }} />
+              
+              {/* Middle ring */}
+              <div className="absolute inset-8 rounded-full border border-[#8CA3B0]/20" />
+              
+              {/* Inner glow */}
+              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-[#8CA3B0]/20 to-[#E7A59C]/20 animate-pulse" />
+              
+              {/* Center */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center">
+                  <Brain className="w-16 h-16 text-[#8CA3B0]" />
+                </div>
+              </div>
+              
+              {/* Orbiting nodes */}
+              <div className="absolute inset-0 animate-spin" style={{ animationDuration: "20s" }}>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#8CA3B0] rounded-full shadow-lg flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4 text-white" />
+                </div>
+              </div>
+              <div className="absolute inset-0 animate-spin" style={{ animationDuration: "25s", animationDirection: "reverse" }}>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#E7A59C] rounded-full shadow-lg flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-white" />
+                </div>
+              </div>
+              <div className="absolute inset-0 animate-spin" style={{ animationDuration: "30s" }}>
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-8 h-8 bg-[#2C3E50] rounded-full shadow-lg flex items-center justify-center">
+                  <Activity className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -925,69 +506,59 @@ function ResearchHub() {
 }
 
 // ============================================
-// GLOBAL VISION SECTION
+// SCIENCE SECTION
 // ============================================
-function GlobalVision() {
+function Science() {
+  const pillars = [
+    {
+      icon: Dna,
+      title: "Neuro-Linguistic Profiling",
+      description: "Analyzes communication tone, syntax, and emotional undertones in real-time.",
+    },
+    {
+      icon: RefreshCw,
+      title: "Behavioral Reinforcement",
+      description: "Learns from outcomes to predict and prevent relational friction.",
+    },
+    {
+      icon: Activity,
+      title: "Cognitive Augmentation",
+      description: "Integrates biometric data to build lasting emotional resilience.",
+    },
+  ];
+
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif">
-              Built in the UK. Designed for Global Empathy.
-            </h2>
-            <p className="text-lg text-[#717182] leading-relaxed">
-              Aligned with the UK&apos;s AI Opportunities Action Plan,
-              NeuralConnexions advances ethical AI with measurable social impact
-              — building emotional intelligence infrastructure for humanity.
-            </p>
-          </div>
+    <section className="py-24 md:py-32 bg-[#2C3E50] text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#8CA3B0]/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#E7A59C]/10 rounded-full blur-[100px]" />
+      </div>
 
-          {/* Key Points */}
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-[#8CA3B0]/20 flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-8 h-8 text-[#8CA3B0]" />
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-[#E7A59C] font-medium text-sm tracking-wider uppercase mb-4 block">The Science</span>
+          <h2 className="text-4xl md:text-5xl font-serif mb-6">
+            Where Neuroscience Meets AI
+          </h2>
+          <p className="text-xl text-white/70">
+            Three research pillars powering the future of human connection
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {pillars.map((pillar, index) => (
+            <div
+              key={index}
+              className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="w-14 h-14 bg-gradient-to-br from-[#8CA3B0] to-[#E7A59C] rounded-2xl flex items-center justify-center mb-6">
+                <pillar.icon className="w-7 h-7 text-white" />
               </div>
-              <h4 className="mb-2 text-[#2C3E50] font-serif text-lg">Global Scale</h4>
-              <p className="text-sm text-[#717182]">
-                Empathy infrastructure for billions
-              </p>
+              <h3 className="font-serif text-xl mb-4">{pillar.title}</h3>
+              <p className="text-white/60 leading-relaxed">{pillar.description}</p>
             </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-[#E7A59C]/20 flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-[#E7A59C]" />
-              </div>
-              <h4 className="mb-2 text-[#2C3E50] font-serif text-lg">Ethical AI</h4>
-              <p className="text-sm text-[#717182]">
-                Privacy-first, transparent design
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-[#8CA3B0]/20 flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-8 h-8 text-[#8CA3B0]" />
-              </div>
-              <h4 className="mb-2 text-[#2C3E50] font-serif text-lg">Social Impact</h4>
-              <p className="text-sm text-[#717182]">
-                Measurable relational health outcomes
-              </p>
-            </div>
-          </div>
-
-          {/* Quote or Highlight */}
-          <div className="mt-16 p-8 bg-gradient-to-r from-[#DCE7F3] to-[#E7A59C]/20 rounded-2xl">
-            <blockquote className="text-center">
-              <p className="text-xl text-[#2C3E50] italic mb-4 font-serif">
-                &quot;The future of AI isn&apos;t just about intelligence —
-                it&apos;s about understanding what makes us human.&quot;
-              </p>
-              <footer className="text-[#8CA3B0] font-medium">
-                — NeuralConnexions Mission
-              </footer>
-            </blockquote>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1001,76 +572,69 @@ function Team() {
   const team = [
     {
       name: "Swapna Nair",
-      role: "CEO / Visionary Lead",
-      focus: "Behavioral design & ethics",
+      role: "CEO & Visionary",
+      focus: "Behavioral Design & Ethics",
       initials: "SN",
       color: "#8CA3B0",
     },
     {
       name: "Dr. Sohan Seth",
       role: "Chief AI Scientist",
-      focus: "NLP & predictive modeling",
+      focus: "NLP & Predictive Modeling",
       initials: "SS",
       color: "#E7A59C",
     },
     {
       name: "Snehal Nair",
       role: "Lead Data Scientist",
-      focus: "Cloud systems & scalability",
+      focus: "Cloud Systems & Scale",
       initials: "SN",
-      color: "#8CA3B0",
+      color: "#2C3E50",
     },
   ];
 
   return (
-    <section className="py-28 bg-gradient-to-b from-white to-[#F5F6F7]/50">
+    <section id="team" className="py-24 md:py-32 bg-gradient-to-b from-[#F5F6F7] to-white">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <h2 className="text-4xl md:text-5xl mb-6 text-[#2C3E50] font-serif leading-tight">
-            The Minds Behind the Machine.
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-[#8CA3B0] font-medium text-sm tracking-wider uppercase mb-4 block">Our Team</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2C3E50] mb-6">
+            The Minds Behind It
           </h2>
-          <p className="text-lg text-[#717182]">
-            A multidisciplinary team united by a vision of human-AI synergy
+          <p className="text-xl text-[#717182]">
+            A multidisciplinary team united by empathy
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {team.map((member, index) => (
             <div key={index} className="text-center group">
-              {/* Avatar */}
-              <div className="mb-8 flex justify-center">
-                <div className="relative">
-                  <div
-                    className="w-36 h-36 rounded-full border-4 border-white shadow-2xl group-hover:scale-105 transition-all duration-500 flex items-center justify-center text-3xl text-white font-serif"
-                    style={{ backgroundColor: member.color }}
-                  >
-                    {member.initials}
-                  </div>
-                  {/* Decorative ring */}
-                  <div 
-                    className="absolute -inset-2 rounded-full border-2 opacity-30 group-hover:opacity-60 transition-opacity duration-300"
-                    style={{ borderColor: member.color }}
-                  />
+              <div className="relative inline-block mb-6">
+                <div
+                  className="w-32 h-32 rounded-full flex items-center justify-center text-white text-3xl font-serif shadow-xl group-hover:scale-105 transition-transform duration-300"
+                  style={{ backgroundColor: member.color }}
+                >
+                  {member.initials}
                 </div>
+                <div 
+                  className="absolute -inset-2 rounded-full border-2 border-dashed opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ borderColor: member.color }}
+                />
               </div>
-
-              {/* Info */}
-              <h3 className="mb-2 text-[#2C3E50] font-serif text-2xl">{member.name}</h3>
-              <p className="text-sm text-[#8CA3B0] mb-3 font-semibold uppercase tracking-wider">{member.role}</p>
-              <p className="text-[#717182] italic">{member.focus}</p>
+              <h3 className="font-serif text-xl text-[#2C3E50] mb-1">{member.name}</h3>
+              <p className="text-[#8CA3B0] font-medium text-sm mb-2">{member.role}</p>
+              <p className="text-[#717182] text-sm">{member.focus}</p>
             </div>
           ))}
         </div>
 
-        {/* Team Philosophy */}
-        <div className="mt-20 max-w-3xl mx-auto">
-          <div className="bg-gradient-to-r from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/20 rounded-3xl p-10 text-center shadow-lg border border-white">
-            <p className="text-lg text-[#2C3E50] leading-relaxed">
-              We believe that the most powerful technology doesn&apos;t replace
-              human connection — it amplifies it. Our diverse backgrounds in
-              psychology, AI, and systems design converge on one mission: making
-              empathy scalable.
+        {/* Quote */}
+        <div className="max-w-3xl mx-auto mt-16">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-100 text-center">
+            <p className="text-xl md:text-2xl text-[#2C3E50] font-serif italic leading-relaxed mb-6">
+              &ldquo;The most powerful technology doesn&apos;t replace human connection — it amplifies it.&rdquo;
             </p>
+            <span className="text-[#8CA3B0] font-medium">— Our Mission</span>
           </div>
         </div>
       </div>
@@ -1081,116 +645,37 @@ function Team() {
 // ============================================
 // CTA SECTION
 // ============================================
-function CTASection() {
+function CTA() {
   return (
-    <section className="py-28 bg-gradient-to-br from-[#8CA3B0] via-[#8CA3B0] to-[#E7A59C] relative overflow-hidden">
-      {/* Background decoration */}
+    <section className="py-24 md:py-32 bg-gradient-to-br from-[#8CA3B0] via-[#9ab0bc] to-[#E7A59C] relative overflow-hidden">
+      {/* Background effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E7A59C]/20 rounded-full blur-[100px]"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl mb-8 text-white font-serif leading-tight">
-            The Future of Human Connection Starts Here.
+          <h2 className="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight">
+            Ready to Transform How You Connect?
           </h2>
-
-          <p className="text-xl text-white/90 mb-14 max-w-2xl mx-auto leading-relaxed">
-            Join us in building the world&apos;s first cognitive companion
-            platform. Be part of the journey from first contact to lifelong
-            growth.
+          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+            Join thousands building deeper, more meaningful relationships with AI-powered guidance.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
-            <button className="bg-white text-[#8CA3B0] hover:bg-gray-50 px-10 py-5 rounded-xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 inline-flex items-center gap-3 font-semibold text-lg hover:-translate-y-1">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="bg-white text-[#8CA3B0] hover:bg-gray-50 px-10 py-5 rounded-full shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 inline-flex items-center gap-3 font-semibold text-lg hover:-translate-y-1">
               Join the Beta
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="bg-white/10 backdrop-blur-sm border-2 border-white/80 text-white hover:bg-white/20 px-10 py-5 rounded-xl transition-all duration-300 inline-flex items-center gap-3 font-semibold text-lg hover:-translate-y-1">
+            <button className="bg-white/10 backdrop-blur-sm border border-white/40 text-white hover:bg-white/20 px-10 py-5 rounded-full transition-all duration-300 inline-flex items-center gap-3 font-medium text-lg hover:-translate-y-1">
               <Download className="w-5 h-5" />
-              Download Whitepaper
+              Get Whitepaper
             </button>
           </div>
 
-          {/* Abstract Neural Visual */}
-          <div className="flex justify-center">
-            <div className="relative w-80 h-40">
-              <svg className="w-full h-full" viewBox="0 0 200 100">
-                {/* Two profiles facing each other */}
-                <ellipse
-                  cx="50"
-                  cy="50"
-                  rx="35"
-                  ry="45"
-                  fill="white"
-                  opacity="0.15"
-                />
-                <ellipse
-                  cx="150"
-                  cy="50"
-                  rx="35"
-                  ry="45"
-                  fill="white"
-                  opacity="0.15"
-                />
-
-                {/* Connection threads */}
-                <path
-                  d="M 50 50 Q 100 20 150 50"
-                  stroke="white"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.5"
-                  className="animate-pulse"
-                />
-                <path
-                  d="M 50 50 Q 100 50 150 50"
-                  stroke="white"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.6"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <path
-                  d="M 50 50 Q 100 80 150 50"
-                  stroke="white"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                />
-
-                {/* Connection nodes */}
-                <circle cx="50" cy="50" r="6" fill="white" opacity="0.8" />
-                <circle cx="150" cy="50" r="6" fill="white" opacity="0.8" />
-                
-                {/* Glow effect */}
-                <circle
-                  cx="100"
-                  cy="50"
-                  r="12"
-                  fill="white"
-                  opacity="0.7"
-                  className="animate-pulse"
-                />
-                <circle
-                  cx="100"
-                  cy="50"
-                  r="6"
-                  fill="white"
-                />
-              </svg>
-            </div>
-          </div>
-
-          {/* Tagline */}
-          <p className="mt-10 text-white/70 text-lg italic font-serif tracking-wide">
-            Shared empathy • Neural threads • Infinite growth
+          <p className="mt-10 text-white/60 text-sm">
+            Free beta access • No credit card required • Cancel anytime
           </p>
         </div>
       </div>
@@ -1203,129 +688,57 @@ function CTASection() {
 // ============================================
 function Footer() {
   return (
-    <footer className="bg-[#2C3E50] text-white py-12">
+    <footer className="bg-[#1a2836] text-white py-16">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-6 h-6 text-[#8CA3B0]" />
-              <span className="tracking-wide font-serif text-lg">NeuralConnexions</span>
+              <span className="font-serif text-xl">NeuralConnexions</span>
             </div>
-            <p className="text-white/70 text-sm mb-4">
-              The world&apos;s first cognitive companion platform. Building
-              emotional intelligence infrastructure for humanity.
+            <p className="text-white/50 mb-4 max-w-sm">
+              The world&apos;s first cognitive companion. Building emotional intelligence infrastructure for humanity.
             </p>
-            <p className="text-white/50 text-xs italic font-serif">
-              Find • Nurture • Sustain
-            </p>
+            <p className="text-[#8CA3B0] font-serif italic">Find • Nurture • Sustain</p>
           </div>
 
-          {/* Quick Links */}
+          {/* Links */}
           <div>
-            <h4 className="mb-4 text-white/90 font-serif">Platform</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  AI Companion
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Digital Twin
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Research
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Pricing
-                </a>
-              </li>
+            <h4 className="font-medium mb-4 text-white/80">Platform</h4>
+            <ul className="space-y-3 text-sm text-white/50">
+              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Science</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Beta Access</a></li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="mb-4 text-white/90 font-serif">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Team
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
+            <h4 className="font-medium mb-4 text-white/80">Company</h4>
+            <ul className="space-y-3 text-sm text-white/50">
+              <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Team</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/50 text-sm">
-            © 2025 NeuralConnexions. Built in the UK. Designed for global
-            empathy.
+          <p className="text-white/40 text-sm">
+            © 2025 NeuralConnexions. Built in the UK.
           </p>
-
-          {/* Social Links */}
           <div className="flex gap-4">
-            <a
-              href="#"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              <Mail className="w-5 h-5" />
+            <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+              <Twitter className="w-4 h-4 text-white/60" />
             </a>
-            <a
-              href="#"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
+            <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+              <Linkedin className="w-4 h-4 text-white/60" />
             </a>
-            <a
-              href="#"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              <Twitter className="w-5 h-5" />
+            <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+              <Mail className="w-4 h-4 text-white/60" />
             </a>
           </div>
         </div>
@@ -1335,22 +748,19 @@ function Footer() {
 }
 
 // ============================================
-// MAIN PAGE COMPONENT
+// MAIN PAGE
 // ============================================
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <Navigation />
       <Hero />
-      <Problem />
-      <CoreConcept />
+      <Solution />
+      <HowItWorks />
       <DigitalTwin />
-      <LifecycleJourney />
-      <Innovation />
-      <BusinessModel />
-      <ResearchHub />
-      <GlobalVision />
+      <Science />
       <Team />
-      <CTASection />
+      <CTA />
       <Footer />
     </main>
   );
