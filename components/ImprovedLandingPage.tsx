@@ -3,637 +3,365 @@ import {
   ArrowRight,
   Brain,
   CheckCircle,
-  Heart,
-  Shield,
+  HeartHandshake,
+  Lock,
   Sparkles,
+  Stars,
   Users,
+  Wand2,
 } from "lucide-react";
-
-const phaseColorClasses = {
-  rose: {
-    container: "bg-rose-100",
-    icon: "text-rose-600",
-  },
-  indigo: {
-    container: "bg-indigo-100",
-    icon: "text-indigo-600",
-  },
-  emerald: {
-    container: "bg-emerald-100",
-    icon: "text-emerald-600",
-  },
-} as const;
+import { Button, Card, Section } from "@/components/ui";
 
 const ImprovedLandingPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-rose-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-neutral-50 text-neutral-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Brain className="w-6 h-6 text-rose-600" />
-            <span className="text-xl font-semibold text-gray-900">
-              NeuralConnexions
-            </span>
+      <nav className="fixed top-0 z-50 w-full border-b border-neutral-200 bg-white/70 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 to-accent-600 text-white shadow-soft">
+              <Brain className="h-5 w-5" />
+            </div>
+            <span className="text-lg font-semibold">NeuralConnexions</span>
           </div>
-          <div className="hidden md:flex space-x-8">
-            <a
-              href="#how-it-works"
-              className="text-gray-700 hover:text-rose-600 transition"
-            >
-              How It Works
+          <div className="hidden items-center gap-8 md:flex">
+            <a href="#workflow" className="text-sm text-neutral-600 hover:text-primary-600">
+              How it works
             </a>
-            <a
-              href="#research"
-              className="text-gray-700 hover:text-rose-600 transition"
-            >
-              Research
+            <a href="#trust" className="text-sm text-neutral-600 hover:text-primary-600">
+              Trust
             </a>
-            <a
-              href="#pricing"
-              className="text-gray-700 hover:text-rose-600 transition"
-            >
+            <a href="#pricing" className="text-sm text-neutral-600 hover:text-primary-600">
               Pricing
             </a>
           </div>
-          <button className="bg-rose-600 text-white px-6 py-2 rounded-full hover:bg-rose-700 transition">
+          <Button variant="primary" size="sm">
             Join Beta
-          </button>
+          </Button>
         </div>
       </nav>
 
-      {/* Hero Section - Simplified and Focused */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-4 px-4 py-2 bg-rose-100 rounded-full">
-            <span className="text-rose-800 text-sm font-medium">
-              Beta Now Open • Limited Spots
-            </span>
+      {/* Hero */}
+      <Section background="gradient" padding="xl">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm text-primary-700 shadow-soft">
+              <Stars className="h-4 w-4" />
+              Beta now open • Limited spots
+            </div>
+            <h1 className="text-4xl font-semibold leading-tight text-neutral-900 md:text-5xl">
+              Calm, connected communication for modern relationships.
+            </h1>
+            <p className="text-lg text-neutral-600">
+              NeuralConnexions blends emotional intelligence with AI guidance so you
+              can feel understood, respond with clarity, and build lasting trust.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button variant="primary" size="lg">
+                Get Started
+              </Button>
+              <Button variant="outline" size="lg">
+                See how it works
+              </Button>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-500">
+              <span className="flex items-center gap-2">
+                <Lock className="h-4 w-4 text-success-600" />
+                GDPR-ready privacy
+              </span>
+              <span className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-accent-600" />
+                Built with attachment science
+              </span>
+              <span className="flex items-center gap-2">
+                <HeartHandshake className="h-4 w-4 text-primary-600" />
+                14-day free trial
+              </span>
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Communication that strengthens
-            <span className="bg-gradient-to-r from-rose-600 to-indigo-600 bg-clip-text text-transparent">
-              {" "}
-              relationships
-            </span>
-          </h1>
+          <div className="relative">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary-100 via-white to-accent-100 blur-2xl" />
+            <div className="relative grid gap-6">
+              <Card variant="elevated" className="bg-white/80 backdrop-blur">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase text-neutral-500">Connection Index</p>
+                    <p className="text-2xl font-semibold text-neutral-900">82%</p>
+                  </div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 text-primary-600">
+                    <Wand2 className="h-6 w-6" />
+                  </div>
+                </div>
+                <div className="mt-4 h-2 rounded-full bg-neutral-100">
+                  <div className="h-2 w-4/5 rounded-full bg-primary-600" />
+                </div>
+              </Card>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            An AI companion that helps you understand your partner better,
-            communicate with clarity, and build lasting emotional connection.
-          </p>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Card variant="outline" className="bg-white/70">
+                  <p className="text-sm font-medium text-neutral-700">Today’s insight</p>
+                  <p className="mt-3 text-sm text-neutral-500">
+                    You communicate best when you begin with reassurance.
+                  </p>
+                </Card>
+                <Card variant="outline" className="bg-white/70">
+                  <p className="text-sm font-medium text-neutral-700">Next step</p>
+                  <p className="mt-3 text-sm text-neutral-500">
+                    Try a 2-minute grounding prompt before the next check-in.
+                  </p>
+                </Card>
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-rose-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-rose-700 transition flex items-center justify-center space-x-2">
-              <span>Start Free Trial</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-gray-400 transition">
-              Watch Demo (2 min)
-            </button>
-          </div>
-
-          <p className="text-sm text-gray-500 mt-6">
-            14-day free trial • No credit card required
-          </p>
-        </div>
-
-        {/* Product Screenshot Placeholder */}
-        <div className="max-w-5xl mx-auto mt-16 rounded-2xl overflow-hidden shadow-2xl">
-          <div className="bg-gradient-to-br from-rose-100 to-indigo-100 aspect-video flex items-center justify-center">
-            <div className="text-center">
-              <Sparkles className="w-16 h-16 text-rose-600 mx-auto mb-4" />
-              <p className="text-gray-600">Product Interface Screenshot</p>
+              <Card variant="gradient">
+                <div className="flex items-center justify-between text-white">
+                  <div>
+                    <p className="text-xs uppercase text-rose-100">Weekly progress</p>
+                    <p className="text-2xl font-semibold">+26% clarity</p>
+                  </div>
+                  <Users className="h-8 w-8" />
+                </div>
+              </Card>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Problem Statement - More Relatable */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The communication gap we all feel
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Small misunderstandings compound into bigger issues. We&apos;ve all
-              been there.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "You&apos;re misunderstood",
-                description: "Your intentions don&apos;t match how your words land",
-                icon: "💬",
-              },
-              {
-                title: "Patterns repeat",
-                description: "The same arguments happen over and over",
-                icon: "🔄",
-              },
-              {
-                title: "Connection fades",
-                description:
-                  "Emotional distance grows without either person meaning it to",
-                icon: "💔",
-              },
-            ].map((problem, idx) => (
-              <div
-                key={idx}
-                className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-4xl mb-4">{problem.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {problem.title}
-                </h3>
-                <p className="text-gray-600">{problem.description}</p>
-              </div>
-            ))}
-          </div>
+      {/* Soft tech highlights */}
+      <Section background="white" padding="md">
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Conversation blueprints",
+              description: "Personalized prompts that diffuse tension before it spikes.",
+            },
+            {
+              title: "Emotion-aware coaching",
+              description: "Real-time suggestions tuned to tone, intent, and context.",
+            },
+            {
+              title: "Shared progress space",
+              description: "Track wins together and reinforce what works.",
+            },
+          ].map((item) => (
+            <Card key={item.title} variant="outline" hover className="bg-white/80">
+              <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-3 text-sm text-neutral-600">{item.description}</p>
+            </Card>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* How It Works - Clear and Specific */}
-      <section id="how-it-works" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
-            Three ways NeuralConnexions helps
+      {/* Workflow */}
+      <Section background="gray" padding="lg" id="workflow">
+        <div className="text-center">
+          <p className="text-sm uppercase tracking-widest text-neutral-500">How it works</p>
+          <h2 className="mt-3 text-3xl font-semibold text-neutral-900 md:text-4xl">
+            A soft-tech flow that feels human
           </h2>
+        </div>
 
-          <div className="space-y-16">
-            {[
-              {
-                phase: "1. Understand",
-                title: "See your communication patterns",
-                description:
-                  "Get insights into how you and your partner communicate differently, what triggers misunderstandings, and where your styles clash or complement.",
-                features: [
-                  "Attachment style analysis",
-                  "Communication pattern mapping",
-                  "Emotional trigger identification",
-                ],
-                icon: Brain,
-                color: "rose",
-              },
-              {
-                phase: "2. Improve",
-                title: "Communicate with confidence",
-                description:
-                  "Real-time suggestions help you express yourself clearly and understand your partner better, without feeling like you&apos;re reading from a script.",
-                features: [
-                  "Contextual phrasing suggestions",
-                  "Emotion-aware responses",
-                  "De-escalation techniques",
-                ],
-                icon: Heart,
-                color: "indigo",
-              },
-              {
-                phase: "3. Grow",
-                title: "Build lasting connection",
-                description:
-                  "Track progress together, celebrate improvements, and work toward shared relationship goals with guided exercises and check-ins.",
-                features: [
-                  "Shared relationship dashboard",
-                  "Progress tracking",
-                  "Guided growth exercises",
-                ],
-                icon: Users,
-                color: "emerald",
-              },
-            ].map((phase, idx) => {
-              const Icon = phase.icon;
-              const colors = phaseColorClasses[phase.color];
-
-              return (
-                <div
-                  key={idx}
-                  className="flex flex-col md:flex-row gap-8 items-center"
-                >
-                  <div
-                    className={`flex-shrink-0 w-16 h-16 rounded-2xl ${colors.container} flex items-center justify-center`}
-                  >
-                    <Icon className={`w-8 h-8 ${colors.icon}`} />
-                  </div>
-
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                      {phase.phase}
-                    </p>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {phase.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">{phase.description}</p>
-                    <ul className="space-y-2">
-                      {phase.features.map((feature, fidx) => (
-                        <li
-                          key={fidx}
-                          className="flex items-center text-gray-700"
-                        >
-                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="w-full md:w-96 h-64 bg-gray-100 rounded-2xl flex items-center justify-center">
-                    <p className="text-gray-500">UI Example {idx + 1}</p>
-                  </div>
+        <div className="relative mt-12 grid gap-8 lg:grid-cols-3">
+          <div className="absolute left-1/2 top-10 hidden h-0.5 w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-primary-200 to-transparent lg:block" />
+          {[
+            {
+              icon: Sparkles,
+              title: "Sense",
+              description: "Capture signals from conversations and shared reflections.",
+            },
+            {
+              icon: HeartHandshake,
+              title: "Translate",
+              description: "Surface the emotional subtext and reframed language.",
+            },
+            {
+              icon: Stars,
+              title: "Synchronize",
+              description: "Turn insights into rituals that keep you aligned.",
+            },
+          ].map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <Card key={step.title} variant="elevated" className="relative">
+                <div className="absolute -top-5 left-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-600 text-white shadow-medium">
+                  <Icon className="h-5 w-5" />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof - Critical Missing Element */}
-      <section className="py-20 px-6 bg-gradient-to-br from-rose-50 to-indigo-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Trusted by couples building stronger relationships
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                quote:
-                  "We went from arguing every other day to actually understanding each other. The real-time suggestions feel natural, not robotic.",
-                author: "Sarah & Michael",
-                timeframe: "Together 3 years",
-              },
-              {
-                quote:
-                  "I was skeptical about AI relationship help, but the insights into our communication patterns were eye-opening.",
-                author: "James & Alex",
-                timeframe: "Beta testers since Nov 2024",
-              },
-              {
-                quote:
-                  "Finally feels like we&apos;re on the same team instead of opponents. The progress dashboard keeps us motivated.",
-                author: "Priya & David",
-                timeframe: "Using for 4 months",
-              },
-            ].map((testimonial, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-8 shadow-lg"
-              >
-                <p className="text-gray-700 mb-6 italic">
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <p className="font-semibold text-gray-900">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {testimonial.timeframe}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing - Clear and Simple */}
-      <section id="pricing" className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center">
-            Simple, transparent pricing
-          </h2>
-          <p className="text-lg text-gray-600 mb-12 text-center">
-            Start free, upgrade when you&apos;re ready
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Individual",
-                price: "Free",
-                description: "Understand yourself better",
-                features: [
-                  "Personal communication insights",
-                  "Weekly pattern reports",
-                  "Basic AI suggestions",
-                  "Self-guided exercises",
-                ],
-                cta: "Start Free",
-                highlight: false,
-              },
-              {
-                name: "Couples",
-                price: "£15/mo",
-                description: "Grow together",
-                features: [
-                  "Everything in Individual",
-                  "Shared relationship dashboard",
-                  "Real-time communication coach",
-                  "Couple exercises & goals",
-                  "Priority support",
-                ],
-                cta: "Start Free Trial",
-                highlight: true,
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "For teams & organizations",
-                features: [
-                  "Workplace communication tools",
-                  "Team analytics dashboard",
-                  "SSO & security compliance",
-                  "Dedicated account manager",
-                  "Custom integration",
-                ],
-                cta: "Contact Sales",
-                highlight: false,
-              },
-            ].map((plan, idx) => (
-              <div
-                key={idx}
-                className={`rounded-2xl p-8 ${
-                  plan.highlight
-                    ? "bg-gradient-to-br from-rose-600 to-indigo-600 text-white shadow-xl scale-105"
-                    : "bg-white border-2 border-gray-200"
-                }`}
-              >
-                <h3
-                  className={`text-xl font-semibold mb-2 ${
-                    plan.highlight ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  {plan.name}
-                </h3>
-                <p
-                  className={`text-sm mb-4 ${
-                    plan.highlight ? "text-rose-100" : "text-gray-600"
-                  }`}
-                >
-                  {plan.description}
-                </p>
-                <div className="mb-6">
-                  <span
-                    className={`text-4xl font-bold ${
-                      plan.highlight ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {plan.price}
-                  </span>
-                  {plan.price !== "Free" && plan.price !== "Custom" && (
-                    <span
-                      className={
-                        plan.highlight ? "text-rose-100" : "text-gray-600"
-                      }
-                    >
-                      {" "}
-                      /month
-                    </span>
-                  )}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, fidx) => (
-                    <li key={fidx} className="flex items-start">
-                      <CheckCircle
-                        className={`w-5 h-5 mr-2 flex-shrink-0 mt-0.5 ${
-                          plan.highlight ? "text-white" : "text-green-600"
-                        }`}
-                      />
-                      <span
-                        className={
-                          plan.highlight ? "text-white" : "text-gray-700"
-                        }
-                      >
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className={`w-full py-3 rounded-full font-medium transition ${
-                    plan.highlight
-                      ? "bg-white text-rose-600 hover:bg-rose-50"
-                      : "bg-rose-600 text-white hover:bg-rose-700"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust & Security - Essential for Relationship Data */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Your privacy is non-negotiable
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: "End-to-end encryption",
-                description:
-                  "Your conversations never leave your devices unencrypted",
-              },
-              {
-                icon: CheckCircle,
-                title: "GDPR compliant",
-                description: "Full compliance with UK & EU data protection",
-              },
-              {
-                icon: Brain,
-                title: "No data selling",
-                description: "We never sell your data. Ever.",
-              },
-              {
-                icon: Users,
-                title: "You own your data",
-                description: "Export or delete everything at any time",
-              },
-            ].map((trust, idx) => {
-              const Icon = trust.icon;
-              return (
-                <div key={idx} className="text-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    {trust.title}
+                <div className="pt-6">
+                  <p className="text-xs uppercase text-neutral-400">0{index + 1}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-neutral-900">
+                    {step.title}
                   </h3>
-                  <p className="text-sm text-gray-600">{trust.description}</p>
+                  <p className="mt-3 text-sm text-neutral-600">{step.description}</p>
                 </div>
-              );
-            })}
-          </div>
+              </Card>
+            );
+          })}
         </div>
-      </section>
+      </Section>
 
-      {/* Research Foundation - Simplified */}
-      <section id="research" className="py-20 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Built on relationship science
+      {/* Social proof */}
+      <Section background="gradient" padding="lg">
+        <div className="text-center">
+          <p className="text-sm uppercase tracking-widest text-neutral-500">Outcomes</p>
+          <h2 className="mt-3 text-3xl font-semibold text-neutral-900 md:text-4xl">
+            Real couples, calmer conversations
           </h2>
-          <p className="text-lg text-gray-600 mb-12">
-            Our approach integrates decades of research in attachment theory,
-            emotional regulation, and interpersonal neurobiology.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Attachment Theory", authors: "Bowlby, Ainsworth" },
-              { title: "Polyvagal Theory", authors: "Porges, 2011" },
-              { title: "Emotionally Focused Therapy", authors: "Johnson, Greenberg" },
-            ].map((research, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-xl p-6 border border-gray-200"
-              >
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  {research.title}
-                </h3>
-                <p className="text-sm text-gray-600">{research.authors}</p>
-              </div>
-            ))}
-          </div>
-
-          <a
-            href="#"
-            className="inline-block mt-8 text-rose-600 font-medium hover:text-rose-700"
-          >
-            Read our research methodology →
-          </a>
         </div>
-      </section>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              quote:
+                "We finally have a shared language. It’s like the tension drops before it starts.",
+              author: "Sarah & Michael",
+            },
+            {
+              quote:
+                "The prompts feel gentle and personal. It keeps us aligned week to week.",
+              author: "James & Alex",
+            },
+            {
+              quote:
+                "We’re more intentional now. The progress tracker makes wins visible.",
+              author: "Priya & David",
+            },
+          ].map((item) => (
+            <Card key={item.author} variant="outline" className="bg-white/80">
+              <p className="text-sm text-neutral-600">“{item.quote}”</p>
+              <p className="mt-4 text-sm font-semibold text-neutral-900">{item.author}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Trust */}
+      <Section background="white" padding="lg" id="trust">
+        <Card variant="elevated" className="bg-white/90">
+          <div className="grid gap-8 md:grid-cols-[1.1fr_1fr]">
+            <div>
+              <p className="text-sm uppercase tracking-widest text-neutral-400">
+                Privacy & trust
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-neutral-900">
+                Your data stays yours.
+              </h2>
+              <p className="mt-4 text-sm text-neutral-600">
+                Built for intimacy, not advertising. Encryption and consent are
+                defaults, not features.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                "End-to-end encryption",
+                "No model training on private data",
+                "Export or delete anytime",
+                "GDPR-ready compliance",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm text-neutral-600">
+                  <CheckCircle className="mt-0.5 h-4 w-4 text-success-600" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      {/* Pricing */}
+      <Section background="gray" padding="lg" id="pricing">
+        <div className="text-center">
+          <p className="text-sm uppercase tracking-widest text-neutral-500">Pricing</p>
+          <h2 className="mt-3 text-3xl font-semibold text-neutral-900 md:text-4xl">
+            Simple plans for real growth
+          </h2>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <Card variant="outline" className="bg-white/90">
+            <p className="text-sm uppercase text-neutral-400">Individual</p>
+            <h3 className="mt-3 text-3xl font-semibold">Free</h3>
+            <p className="mt-3 text-sm text-neutral-600">
+              Personal insights and daily emotional clarity.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm text-neutral-600">
+              {[
+                "Personal communication insights",
+                "Weekly pattern summaries",
+                "Guided reflection prompts",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-success-600" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button variant="outline" size="md" fullWidth>
+                Start Free
+              </Button>
+            </div>
+          </Card>
+          <Card variant="gradient" className="text-white">
+            <p className="text-sm uppercase text-rose-100">Couples</p>
+            <h3 className="mt-3 text-3xl font-semibold">£15 / month</h3>
+            <p className="mt-3 text-sm text-rose-100">
+              Shared progress, real-time coaching, and rituals that stick.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm text-rose-100">
+              {[
+                "Everything in Individual",
+                "Shared relationship dashboard",
+                "Real-time coaching prompts",
+                "Couple rituals and check-ins",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-white" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button variant="outline" size="md" fullWidth>
+                Start free trial
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </Section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-rose-600 to-indigo-600 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to strengthen your relationship?
+      <Section background="brand" padding="lg">
+        <div className="text-center text-white">
+          <h2 className="text-3xl font-semibold md:text-4xl">
+            Build a relationship that feels safe.
           </h2>
-          <p className="text-xl text-rose-100 mb-10">
-            Join hundreds of couples building deeper connection with
-            NeuralConnexions
+          <p className="mt-4 text-rose-100">
+            Let NeuralConnexions guide the hard conversations with care.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-rose-600 px-8 py-4 rounded-full text-lg font-medium hover:bg-rose-50 transition">
-              Start Free Trial
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition">
-              Talk to Our Team
-            </button>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button variant="outline" size="lg">
+              Start free trial
+            </Button>
+            <Button variant="ghost" size="lg">
+              Talk to our team
+            </Button>
           </div>
-
-          <p className="text-sm text-rose-100 mt-6">
-            14-day free trial • Cancel anytime • No credit card required
-          </p>
         </div>
-      </section>
+      </Section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Brain className="w-5 h-5 text-rose-500" />
-              <span className="text-white font-semibold">NeuralConnexions</span>
-            </div>
-            <p className="text-sm">
-              Building emotional intelligence infrastructure for humanity.
-            </p>
+      <footer className="border-t border-neutral-200 bg-white py-12">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-neutral-500 md:flex-row">
+          <span>© 2025 NeuralConnexions. Built in the UK.</span>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-primary-600">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-primary-600">
+              Terms
+            </a>
+            <a href="#" className="hover:text-primary-600">
+              Contact
+            </a>
           </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  How It Works
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Research
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Security
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Team
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Cookie Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  GDPR
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-800 text-sm text-center">
-          <p>© 2025 NeuralConnexions. Built in the UK. Designed for global empathy.</p>
         </div>
       </footer>
     </div>
