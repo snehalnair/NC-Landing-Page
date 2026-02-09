@@ -186,8 +186,8 @@ function ChartTooltipContent({
           const indicatorColor = color || item.payload.fill || item.color;
 
           return (
-            <div
-              key={String(item.dataKey ?? item.name ?? index)}
+              <div
+                key={String(item.dataKey ?? item.name ?? index)}
               className={cn(
                 "[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5",
                 indicator === "dot" && "items-center",
@@ -259,10 +259,7 @@ function ChartLegendContent({
   verticalAlign = "bottom",
   nameKey,
 }: React.ComponentProps<"div"> &
-  Pick<
-    RechartsPrimitive.DefaultLegendContentProps,
-    "payload" | "verticalAlign"
-  > & {
+  Pick<RechartsPrimitive.DefaultLegendContentProps, "payload" | "verticalAlign"> & {
     hideIcon?: boolean;
     nameKey?: string;
   }) {
