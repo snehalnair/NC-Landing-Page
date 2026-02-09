@@ -3,37 +3,73 @@
 import { Button } from "./ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
 
+import { motion } from "motion/react";
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#DCE7F3] via-[#F5F6F7] to-[#E7A59C]/20">
       {/* Background Neural Network Visual */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#8CA3B0] rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#E7A59C] rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#8CA3B0] rounded-full mix-blend-multiply filter blur-3xl"
+        ></motion.div>
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#E7A59C] rounded-full mix-blend-multiply filter blur-3xl"
+        ></motion.div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20 text-center">
         {/* Logo & Tagline */}
-        <div className="mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
           <div className="inline-flex items-center gap-2 mb-3">
             <Sparkles className="w-8 h-8 text-[#8CA3B0]" />
             <span className="tracking-widest text-[#8CA3B0] uppercase">NeuralConnexions</span>
           </div>
           <p className="text-[#8CA3B0] italic">Find • Nurture • Sustain</p>
-        </div>
+        </motion.div>
 
         {/* Main Headline */}
-        <h1 className="text-5xl md:text-7xl mb-6 text-[#2C3E50] max-w-4xl mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-7xl mb-6 text-[#2C3E50] max-w-4xl mx-auto"
+        >
           The World's First Cognitive Companion
-        </h1>
+        </motion.h1>
 
         {/* Subheadline */}
-        <p className="text-xl md:text-2xl text-[#717182] mb-12 max-w-3xl mx-auto">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-xl md:text-2xl text-[#717182] mb-12 max-w-3xl mx-auto"
+        >
           AI that understands human connection — guiding you from first contact to lifelong growth.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
           <Button 
             size="lg" 
             className="bg-[#8CA3B0] hover:bg-[#7a93a0] text-white px-8 py-6 shadow-lg hover:shadow-xl transition-all"
@@ -48,7 +84,7 @@ export default function Hero() {
           >
             Join the Beta
           </Button>
-        </div>
+        </motion.div>
 
         {/* Visual Concept - Abstract Neural Faces */}
         <div className="mt-20 relative">
