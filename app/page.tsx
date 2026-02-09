@@ -1,5 +1,5 @@
-import App from "../App";
+import ImprovedLandingPage from "@/components/ImprovedLandingPage";
 
 export default function Page() {
-  return <App />;
+  return <ImprovedLandingPage />;
 }
