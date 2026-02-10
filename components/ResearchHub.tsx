@@ -5,24 +5,10 @@ import { Button } from "./ui/button";
 import { BookOpen, ExternalLink, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-export default function ResearchHub() {
-  const featuredResearch = [
-    {
-      title: "How Attachment Shapes Adult Intimacy",
-      abstract: "How childhood patterns influence adult relationships.",
-      image: "https://images.unsplash.com/photo-1680603007731-d8da76c235ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3VwbGUlMjByZWxhdGlvbnNoaXB8ZW58MXx8fHwxNzYwMDA0MTQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-    },
-    {
-      title: "Emotional Safety: The Hidden Currency of Relationships",
-      abstract: "Co-regulation and trust through the lens of Polyvagal Theory.",
-      image: "https://images.unsplash.com/photo-1555728333-5ff9f9ff9538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxodW1hbiUyMGNvbm5lY3Rpb24lMjBoYW5kc3xlbnwxfHx8fDE3NjAwMDQxNDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-    },
-    {
-      title: "Why We Pick Who We Pick",
-      abstract: "Attachment pairings and repetition compulsion explained.",
-      image: "https://images.unsplash.com/photo-1556695725-3cc4a29d4ef7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwc3ljaG9sb2d5JTIwdGhlcmFweXxlbnwxfHx8fDE3NjAwMDQxNTB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-    }
-  ];
+import { blogData } from "../data/blogs";
+
+export default function ResearchHub({ onSelectPost }: { onSelectPost: (id: string) => void }) {
+  const featuredResearch = Object.values(blogData).slice(0, 3);
 
   const academicReferences = [
     {
@@ -46,7 +32,7 @@ export default function ResearchHub() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#DCE7F3]/20 via-white to-[#E7A59C]/10">
+    <section id="research" className="py-24 bg-gradient-to-br from-[#DCE7F3]/20 via-white to-[#E7A59C]/10">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -68,6 +54,7 @@ export default function ResearchHub() {
             {featuredResearch.map((research, index) => (
               <Card 
                 key={index} 
+                onClick={() => onSelectPost(research.id)}
                 className="overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
               >
                 <div className="relative h-48 overflow-hidden bg-gray-100">
@@ -89,6 +76,10 @@ export default function ResearchHub() {
                   <Button 
                     variant="ghost" 
                     className="text-[#8CA3B0] hover:text-[#7a93a0] p-0 h-auto"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectPost(research.id);
+                    }}
                   >
                     Read <ArrowRight className="ml-1 w-4 h-4" />
                   </Button>

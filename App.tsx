@@ -13,7 +13,31 @@ import Team from "./components/Team";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 
+import { BlogPost } from "./components/BlogPost";
+import { useState } from "react";
+import { blogData } from "./data/blogs";
+
 export default function App() {
+  const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
+
+  if (selectedPostId && blogData[selectedPostId]) {
+    return (
+      <BlogPost 
+        post={blogData[selectedPostId]} 
+        onBack={() => {
+          setSelectedPostId(null);
+          // Use a small timeout to allow the main page to render before scrolling
+          setTimeout(() => {
+            const element = document.getElementById("research");
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 0);
+        }} 
+      />
+    );
+  }
+
   return (
     <div className="size-full">
       <Hero />
@@ -24,7 +48,7 @@ export default function App() {
       <Innovation />
       <BusinessModel />
       <GlobalVision />
-      <ResearchHub />
+      <ResearchHub onSelectPost={setSelectedPostId} />
       <Team />
       <CTASection />
       <Footer />
